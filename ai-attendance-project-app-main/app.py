@@ -1,13 +1,14 @@
-import sys
 import os
+import sys
+
+root_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+if root_path not in sys.path:
+    sys.path.insert(0, root_path)
+
 import streamlit as st
-current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.append(current_dir)
 from src.screens.home_screen import home_screen
 from src.screens.teacher_screen import teacher_screen
 from src.screens.student_screen import student_screen
-
 from src.components.dialog_auto_enroll import auto_enroll_dialog
 
 def main():
