@@ -1,15 +1,20 @@
 import os
 import sys
 
-root_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
-if root_path not in sys.path:
-    sys.path.insert(0, root_path)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+src_dir = os.path.join(current_dir, "src")
+
+for path in [current_dir, src_dir]:
+    if path not in sys.path:
+        sys.path.insert(0, path)
 
 import streamlit as st
-from src.screens.home_screen import home_screen
-from src.screens.teacher_screen import teacher_screen
-from src.screens.student_screen import student_screen
-from src.components.dialog_auto_enroll import auto_enroll_dialog
+
+# Imports se 'src.' hata diya taaki direct access ho sake
+from screens.home_screen import home_screen
+from screens.teacher_screen import teacher_screen
+from screens.student_screen import student_screen
+from components.dialog_auto_enroll import auto_enroll_dialog
 
 def main():
     st.set_page_config(
