@@ -1,18 +1,21 @@
 import os
 import sys
 
+# Pura absolute system path root aur src dono ke liye bypass kiya
 current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
+src_dir = os.path.join(current_dir, "src")
+
+for path in [current_dir, src_dir]:
+    if path not in sys.path:
+        sys.path.insert(0, path)
 
 import streamlit as st
 
-# Standard absolute structure mapping fir se set kar di
-from src.screens.home_screen import home_screen
-from src.screens.teacher_screen import teacher_screen
-from src.screens.student_screen import student_screen
-from src.components.dialog_auto_enroll import auto_enroll_dialog
-
+# Direct relative routing bina kisi 'src.' confusion ke
+from screens.home_screen import home_screen
+from screens.teacher_screen import teacher_screen
+from screens.student_screen import student_screen
+from components.dialog_auto_enroll import auto_enroll_dialog
 def main():
     st.set_page_config(
         page_title='Attend Nova - Making Attendance faster using AI',
