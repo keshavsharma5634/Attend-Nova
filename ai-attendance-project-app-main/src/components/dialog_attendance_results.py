@@ -7,15 +7,12 @@ import time
 from src.database.db import create_attendance
 
 def show_attendance_result(df, logs):
-    st.write('👉 **Tip:** Galat face detection thik karne ke liye niche **Status** column par click/uncheck karein.')
-    
-    # 1. UI table ke liye status check karke checkbox column handle kiya
+   
     if "Is Present" not in df.columns:
         df["Is Present"] = df["Status"].apply(lambda x: True if "Present" in x else False)
     
     display_df = df[["Name", "ID", "Source", "Is Present"]]
     
-    # 2. st.dataframe ki jagah interactive data_editor use kiya
     edited_df = st.data_editor(
         display_df,
         hide_index=True,
