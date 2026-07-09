@@ -16,6 +16,7 @@ def share_subject_dialog(subject_name, subject_code):
     out = io.BytesIO()
 
     qr.save(out, kind='png', scale=10, border=1)
+    out.seek(0)
 
     col1, col2 = st.columns(2)
 
